@@ -33,7 +33,7 @@ Load the data.
 
 ```{r}
 #Path to data. Note the use of the here() package and not absolute paths
-data_location <- here::here("data","processed-data","processeddata2.rds")
+data_location <- here::here("data","processed-data","processeddata.rds")
 #load data
 mydata <- readRDS(data_location)
 ```
@@ -104,66 +104,4 @@ ggsave(filename = figure_file, plot=p4)
 
 For your own explorations, tables and figures can be "quick and dirty". As long as you can see what's going on, there is no need to polish them. That's in contrast to figures you'll produce for your final products (paper, report, presentation, website, etc.). Those should look as nice, polished and easy to understand as possible.
 
-# Exploring the new variables (by Emil Joson)
 
-Let's take a look at the new variables: age and marital status.
-
-```{r}
-p5 <- mydata %>% ggplot(aes(x=Age)) + geom_histogram()
-plot(p5)
-figure_file = here("results", "figures","age-distribution.png")
-ggsave(filename = figure_file, plot=p5) 
-```
-
-It looks like all the individuals are of different ages. Let's take a look at them again roughly based on generations by increasing the binwidth.
-
-```{r}
-p6 <- mydata %>% ggplot(aes(x=Age)) + geom_histogram(bins=3)
-plot(p6)
-figure_file = here("results", "figures","age-distribution2.png")
-ggsave(filename = figure_file, plot=p6) 
-```
-
-We can see that the individuals in this dataset are relatively younger. Let's take a look at their marital statuses next. 
-
-```{r}
-p7 <- mydata %>% ggplot(aes(x=`Marital Status`)) + 
-    geom_bar() +
-    scale_x_discrete(
-    labels = c(
-      "S" = "Single",
-      "M" = "Married",
-      "D" = "Divorced",
-      "W" = "Widowed"
-    ))
-plot(p7)
-figure_file = here("results", "figures","marital-distribution.png")
-ggsave(filename = figure_file, plot=p7) 
-```
-
-Now that we have a better understanding of the new variables, let's create two plots: (1) a boxplot with the new categorical variable (Marital Status) on the X-axis and height on the Y-axis and (2) a scatterplot with weight on the X-axis and the new numerical variable (Age) on the Y-axis.
-
-
-```{r}
-p8 <- mydata %>% ggplot(aes(x=`Marital Status`, y=Height)) + 
-    geom_boxplot() +
-    scale_x_discrete(
-    labels = c(
-      "S" = "Single",
-      "M" = "Married",
-      "D" = "Divorced",
-      "W" = "Widowed"
-    ))
-plot(p8)
-figure_file = here("results", "figures","marital-vs-height.png")
-ggsave(filename = figure_file, plot=p8) 
-```
-
-
-```{r}
-p9 <- mydata %>% ggplot(aes(x=`Weight`, y=Age)) + 
-    geom_point()
-plot(p9)
-figure_file = here("results", "figures","age-vs-weight.png")
-ggsave(filename = figure_file, plot=p9) 
-```
