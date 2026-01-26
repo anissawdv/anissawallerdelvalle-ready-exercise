@@ -63,7 +63,7 @@ _It is recommended to use a structured abstract with Background/Methods/Results/
 _Provide enough background on your topic that others can understand the why and how of your analysis_ 
 
 ## Description of data and data source
-_Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section._
+Two new variables were added to the dataset and saved in exampledata2.xlsx. The first variable is age, reported as a numeric value >0 or non-applicable (NA) representing the age of each individual in years. The second variable is martial status, reported as either S (Single), M (Married), D (Divorced), W (Widowed), or NA. These variables are documented in the Codebook sheet of the updated dataset. 
 
 ## Questions/Hypotheses to be addressed
 _State the research questions you plan to answer with this analysis._
